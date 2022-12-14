@@ -1,8 +1,7 @@
 
 
-let prato = 2;
-let tempo = 5;
-
+microondas(1,5);
+function microondas (prato, tempo){
     if (prato >= 1 && prato <= 5 && tempo >= 0) {
 
         if (prato == 1 && tempo >= 10 && tempo < 20 || prato == 2 && tempo > 8 && tempo < 16 || prato == 3 && tempo <= 15 && tempo < 30 || prato == 4 && tempo <= 12 && tempo < 24 || prato == 5 && tempo <= 8 && tempo < 16) {
@@ -32,5 +31,7 @@ let tempo = 5;
         console.log("Prato inexistente")
 
     }
+    return;
+}
 
 
