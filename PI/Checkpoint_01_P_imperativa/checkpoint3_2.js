@@ -125,57 +125,79 @@ this.faltas = faltas ++;
 }
 const aluno1 = new Aluno ("Beatriz", 3, [7,7,7]);
 const aluno2 = new Aluno ("joão",2, [8,5.5,9] );
-const aluno3 = new Aluno ("Taylor", 10, [7,10,7]);
+const aluno3 = new Aluno ("Taylor", 15, [7,10,7]);
 const aluno4 = new Aluno ("Handerson",16, [7,6,8]);
 const aluno5 = new Aluno ("Mbappe",8, [4,4,7]);
-console.log(aluno1.nome,'= Média: ', aluno1.mediafinal(), ' Numero de faltas: ',aluno1.maisfaltas());
-console.log(aluno2.nome,'= Media: ', aluno2.mediafinal(), ' Numero de faltas: ',aluno2.maisfaltas());
-console.log(aluno3.nome,'= Media: ', aluno3.mediafinal(), ' Numero de faltas: ',aluno3.maisfaltas());
-console.log(aluno4.nome,'= Media: ', aluno4.mediafinal(), ' Numero de faltas: ',aluno4.maisfaltas());
-console.log(aluno5.nome,'= Media: ', aluno5.mediafinal(), ' Numero de faltas: ',aluno5.maisfaltas());
+console.log(aluno1.nome,'= Média: ', aluno1.mediafinal(), ' Numero de faltas + 1: ',aluno1.maisfaltas());
+console.log(aluno2.nome,'= Media: ', aluno2.mediafinal(), ' Numero de faltas + 1: ',aluno2.maisfaltas());
+console.log(aluno3.nome,'= Media: ', aluno3.mediafinal(), ' Numero de faltas + 1: ',aluno3.maisfaltas());
+console.log(aluno4.nome,'= Media: ', aluno4.mediafinal(), ' Numero de faltas + 1: ',aluno4.maisfaltas());
+console.log(aluno5.nome,'= Media: ', aluno5.mediafinal(), ' Numero de faltas + 1: ',aluno5.maisfaltas());
+const estudantes = [];
 
 
 
-
-
-
+estudantes.push(aluno1, aluno2, aluno3, aluno4, aluno5);
 
 let curso = {
     nome_curso:"Calculo A",
     nota_ap: 7,
-    faltas_max:15,
-    estudantes:[Aluno],
+    faltas_max: 15,
+    discente: estudantes,
   
     cadastraraluno(nome, faltas, notas){
   
         const novoaluno =new Aluno(nome, faltas, notas);
-        this.estudantes.push(novoaluno);
+        this.discente.push(novoaluno);
   
       },
      
   
-//       aprovado(nomealuno){
+      aprovado(aluno){
+        let soma =  aluno.notas.reduce ((acc, nota)=> {return acc + nota})
+        let mediafinal= soma/ aluno.notas.length;
+         const mediadezpct = ((this.nota_ap * 0.1)+this.nota_ap);
+        console.log(mediadezpct)
+      
+        if (mediafinal >= this.nota_ap & aluno.faltas < this.faltas_max  ){
+        return true;
+      }
+      else if (mediafinal >= mediadezpct & aluno.faltas === this.faltas_max) {
+        return true;
+      }
+      else {
+        return false;
+      }
+      },
+
+      // resultados() {
+      //   return this.discente.map((aluno) => this.aprovado(aluno));
+      // },
     
-//         let naluno = this.estudates.some(estudantes => estudantes.nome === nomealuno)
-//       if (naluno = true){
-//         return console.log(nomealuno);
-//       }
-//   else {
-//     console.log("não encontrado")
-//   }
-  
-//         if (media <=7 && faltas <=15 )
-//         console.log("Aprovado")
-  
-//       }
+      resultados(aluno){
+        for (let i = 0; i < this.discente.length; i++) {
+          let resultados=[i] = this.aprovado(aluno);
+          return resultados;
+          
+        }
+      }
   
   };
+
+  
   // soma = curso.estudantes.notas.reduce((acc,valorAtual) => acc + valorAtual,0);
   // const media2 = soma/numeros2.length;
   
   // curso.cadastraraluno("caio", 7 ,[7,8,5]);
   // console.log(curso.estudantes);
-//   curso.aprovado("Beatriz")
+  // console.log(curso.aprovado(aluno1).mediadezpct);
+  console.log(curso.aprovado(aluno3));
+  console.log(curso.aprovado(aluno4));
+  console.log(curso.aprovado(aluno5));
+  console.log(curso.resultados(curso.discente));
+
+
+
   // console.log(media2);
-  console.log(curso.estudantes.Aluno)
+  // console.log(curso.estudantes.Aluno)
   
