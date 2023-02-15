@@ -34,18 +34,18 @@ function game() {
             console.log(`Você jogou ${jogadausuario} e a maquina tembem jogou ${result}. Portando empate`)
         }
 
-        else if ((jogadausuario.toLowerCase() === 'pedra') && (result.toLowerCase === 'tesoura')) {
+        else if (jogadausuario.toLowerCase() === "pedra" && result.toLowerCase() == "tesoura") {
             // vitoria
             pontuação++
             console.log(`Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você marcou um ponto`)
         }
 
-        else if ((jogadausuario.toLowerCase() === 'papel') && (result.toLowerCase === 'pedra')) {
+        else if (jogadausuario.toLowerCase() === "papel" && result.toLowerCase() == "pedra") {
             // vitoria
             pontuação++
             console.log(`Você jogou ${jogadausuario} e a maquina jogou ${result}. Você marcou um ponto`)
         }
-        else if ((jogadausuario.toLowerCase() === 'tesoura') && (result.toLowerCase === 'papel')) {
+        else if (jogadausuario.toLowerCase() === "tesoura" && result.toLowerCase() == "papel") {
             // vitoria
             pontuação++
             console.log(`Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você marcou um ponto`)
