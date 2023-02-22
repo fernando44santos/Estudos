@@ -59,13 +59,12 @@ function game() {
     }
 // resultados
 if(pontuação > pontuaçãomaquina){
-    alert(`Você ganhou!, sua a pontuação foi ${pontuação} contra ${pontuaçãomaquina}`)
+    result.innerHTML = `Você ganhou! sua a pontuação foi ${pontuação} contra ${pontuaçãomaquina}`
 }
 else if (pontuação === pontuaçãomaquina){
-    alert(`Empate!`)
+   result.innerHTML =`Empate!`
 }
 else{
-    alert(`Você perdeu!, sua a pontuação foi ${pontuação} contra ${pontuaçãomaquina}`)
+    result.innerHTML =`Você perdeu! sua a pontuação foi ${pontuação} contra ${pontuaçãomaquina}`
 }
 }
-game()
