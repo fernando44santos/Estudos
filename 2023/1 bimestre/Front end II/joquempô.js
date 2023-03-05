@@ -31,28 +31,28 @@ function PedraPTes() {
          // vericar resultado do jogo
          if (jogadausuario.toLowerCase() === result.toLowerCase()) {
              // empate 
-             console.log(`Você jogou ${jogadausuario} e a maquina tembem jogou ${result}. Portando empate`)
+             parcial.innerHTML = `Você jogou ${jogadausuario} e a maquina tembem jogou ${result}. Portando empate`
          }
  
          else if (jogadausuario.toLowerCase() === "pedra" && result.toLowerCase() == "tesoura") {
              // vitoria
              pontuação++
-             console.log(`Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você marcou um ponto`)
+             parcial.innerHTML = ` Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você marcou um ponto`
          }
  
          else if (jogadausuario.toLowerCase() === "papel" && result.toLowerCase() == "pedra") {
              // vitoria
              pontuação++
-             console.log(`Você jogou ${jogadausuario} e a maquina jogou ${result}. Você marcou um ponto`)
+             parcial.innerHTML = ` Você jogou ${jogadausuario} e a maquina jogou ${result}. Você marcou um ponto`
          }
          else if (jogadausuario.toLowerCase() === "tesoura" && result.toLowerCase() == "papel") {
              // vitoria
              pontuação++
-             console.log(`Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você marcou um ponto`)
+             parcial.innerHTML = ` Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você marcou um ponto`
          }
  
          else {
-             console.log(`Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você perdeu`)
+             parcial.innerHTML = ` Você jogou ${jogadausuario} e a maquina  jogou ${result}. Você perdeu`
              pontuaçãomaquina ++
          }
   
