@@ -1,0 +1,23 @@
+body {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 40em;
+    height: 15em;
+    background-color: rgb(205, 154, 60);
+ 
+}
+
+.size{
+    width: 18em;
+    height: 2em;
+}

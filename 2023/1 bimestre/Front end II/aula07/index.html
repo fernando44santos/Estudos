@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Aula 07 - Eventos</title>
+</head>
+
+<body>
+    
+    <section class="form" id="formevent">
+        <header>
+            <h1 class="title" id="are">Cadastre-se</h1>
+        </header>
+
+        <div class="name">
+            <input class="size" type="text" name="txt01" id="firstname" value="Nome" disabled>
+            <input class="size"type="text" name="txt02" id="lastname" value="Sobrenome">
+        </div>
+        <div class="pnumber">
+            <input class="size"type="text" name="phone" id="phonenumber" value="Celular"> 
+        </div>
+        <div class="password">
+            <input class="size"type="text" name="phone" id="phonenumber" value="Senha"> 
+        </div>
+
+
+
+        <div class="gen">
+            <label for="">Genero:</label>
+            <input type="radio" name="radiosex" id="radiom" value="Masculino">
+            <label for="radiom"> Masculino</label>
+            <input type="radio" name="radiosex" id="radiof" value="Feminino">
+            <label for="radiof"> Feminino</label>
+            <input type="radio" name="radiosex" id="radioo" value="outro">
+            <label for="radioo"> Outro </label>
+        </div>
+
+        <div class="birth">
+            <label for="datebirth">Data de Nascimento:</label>
+            <input class="size"type="date" name="birth" id="datebirth">
+        </div>
+
+    </section>
+    <script src="script.js"></script>
+</body>
+
+</html>

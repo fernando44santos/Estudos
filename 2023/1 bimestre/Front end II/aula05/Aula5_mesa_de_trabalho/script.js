@@ -1,3 +1,6 @@
+
+
+function darkside (){
 // Modificando cor do backgraud 
 document.querySelector('.dark').style.backgroundColor = 'rgb(39, 39, 39)'
 // Adicionando uma class na tag h1
@@ -16,6 +19,9 @@ for (let index = 0; index < 6; index++) {
     document.querySelectorAll('.item')[index].style.borderColor = 'black'
     document.querySelectorAll('.item')[index].style.color = 'rgb(230, 230, 230)'
     }
+  
+}
+
 // Removendo itens
 
 // let removidos = document.querySelectorAll('.item')[0].remove()
