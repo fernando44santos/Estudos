@@ -47,6 +47,9 @@ h1 {
   margin-bottom: .2em;
 }
 
+h1 label{
+  font-size: 15px;
+}
 
 /* ------------------------------ Estilos para o tema escuro (Dark-Mode) ----------------------------------------------- */
 
