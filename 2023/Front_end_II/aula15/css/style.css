@@ -1,0 +1,26 @@
+body{
+    background-color: black;
+    display:flex;
+    justify-content: center;
+}
+.forms{
+    width: 20em;
+    height: 15em;
+    background-color: gray;
+    border-radius: 0.2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+#name{
+    width: 18em;
+    
+}
+.btn{
+    width: 5em;
+}
+.write{
+    color: aqua;
+}
