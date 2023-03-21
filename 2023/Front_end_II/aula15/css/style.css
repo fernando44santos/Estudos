@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     display:flex;
     justify-content: center;
 }
@@ -18,9 +18,11 @@ body{
     width: 18em;
     
 }
-.btn{
+.btnenviar{
     width: 5em;
 }
-.write{
-    color: aqua;
+.msg{
+    color: rgb(0, 0, 0);
+    width: 8em;
+   
 }

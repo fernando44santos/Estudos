@@ -1,20 +1,41 @@
 const botao = document.querySelector("form")
+const botaorest = document.querySelector("#btreset")
+
+botaorest.addEventListener('click', (e) =>{
+   e.preventDefault()
+   localStorage.removeItem('txt')
+   const write = document.querySelector('.msg')
+   let coment = ' '
+   write.innerHTML = coment
+})
 botao.addEventListener('submit', (event) => {
-event.preventDefault()
-    const ms = document.querySelector("#txt").value
-    const value = {}
-    const write = document.querySelector('.msg')
-    value['comentario'] = ms
- const json = JSON.stringify(value)
- localStorage.setItem('txt', json)
- const save = JSON.parse(json)
-    console.log(json)
- for (let i= 0; i < save.length; i++) {
-    
-    write.innerHTML = `<p>${save[i]} </p>`
- } 
+   event.preventDefault()
 
 
+   const ms = document.querySelector("#txt").value
+   const value = ms
+
+
+
+   const json = JSON.stringify(value)
+
+   localStorage.setItem('txt', json)
+
+   const save = JSON.parse(json)
+
+   console.log(save)
+
+
+   for (let i = 0; i < save.length; i++) {
+      const write = document.querySelector('.msg')
+      let coment = `<p>${save[i]}</p>`
+      write.innerHTML = coment
+
+   }
+
+   const write = document.querySelector('.msg')
+   let coment = `<p>${save}</p>`
+   write.innerHTML = coment
 
 })
 
