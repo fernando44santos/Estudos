@@ -1,14 +1,12 @@
 body{
-    background-color: rgb(179, 142, 142);
+    background-color: rgb(0, 0, 0);
     display:flex;
-    width: auto;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 .forms{
     width: 20em;
     height: 15em;
-    background-color: rgb(160, 79, 79);
+    background-color: gray;
     border-radius: 0.2em;
     display: flex;
     flex-direction: column;
@@ -16,22 +14,15 @@ body{
     align-items: center;
     
 }
-.inp{
-    width: 14em;
-} 
 #name{
     width: 18em;
-    
-}
-.button{
-    display: flex;
     
 }
 .btnenviar{
     width: 5em;
 }
 .msg{
-    color: rgb(255, 225, 0);
-   
+    color: rgb(0, 0, 0);
+    width: 8em;
    
 }

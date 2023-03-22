@@ -1,85 +1,53 @@
 const botao = document.querySelector("form")
 const botaorest = document.querySelector("#btreset")
 
-botaorest.addEventListener('click', (e) =>{
-   e.preventDefault()
-   localStorage.removeItem('txt')
-   const write = document.querySelector('.msg')
-   let coment = ' '
-   write.innerHTML = coment
-})
+
+
+// Função botão enviar
 botao.addEventListener('submit', (event) => {
    event.preventDefault()
 
 
-   const ms = document.querySelector("#txt").value
-   const value = ms
+   // localStorage
+   var ms = document.querySelector("#txt").value
+   localStorage.setItem('comentario', ms)
+   let local = localStorage.getItem('comentario')
+   // sessionStorage
+   let ms2 = document.querySelector("#txt2").value
+   sessionStorage.setItem('comentario2', ms2)
+   let localSes = sessionStorage.getItem('comentario2')
 
 
 
-   const json = JSON.stringify(value)
-
-   localStorage.setItem('txt', json)
-
-   const save = JSON.parse(json)
-
-   console.log(save)
 
 
-   for (let i = 0; i < save.length; i++) {
-      const write = document.querySelector('.msg')
-      let coment = `<p>${save[i]}</p>`
-      write.innerHTML = coment
 
-   }
-
+   console.log(local)
+// Escrevendo na tela o que foi obtido do input
    const write = document.querySelector('.msg')
-   let coment = `<p>${save}</p>`
+   let coment = `<p>Local sto:${local}</p>`
    write.innerHTML = coment
+
+
+   const write2 = document.querySelector('.msg2')
+   let coment2 = `<p>Sesion sto:${localSes}</p>`
+   write2.innerHTML = coment2
 
 })
 
+// Função botão reset
+botaorest.addEventListener('click', (e) => {
+   e.preventDefault()
+   localStorage.removeItem('comentario')
+   const write = document.querySelector('.msg')
+   let coment = ' '
+   write.innerHTML = coment
+})
 
-
-
-
-// const submit = document.querySelector('.btnEnviar')
-
-
-
-// function dados() {
-
-//     const Value = document.getElementById('txt').value;
-//     const Msg = document.querySelector('.p');
-//     Msg.innerText = Value;
-//     console.log(Value);
-
-// }
-// submit.addEventListener('click', dados)
-
-
-
-
-// const btn = document.querySelector('.btnS')
-
-
-// const p = document.getElementsByClassName('write')
-
-
-// btn.addEventListener ('submit', () =>{
-//     const namevalue = document.querySelector('p#name').value
-//     p.innerHTML = namevalue
-//     console.log(namevalue)
-// })
-
-
-
-// btn.addEventListener('submit', enviar)
-
-// function enviar(){
-//     // p.innerHTML = `${namevalue}`
-//     console.log('ceerto')
-// }
-// addEventListener
-// const submit = document.querySelector('.btnS')
-// submit.addEventListener('click', enviar)
+// if que retorna Local storage para a tela
+let local = localStorage.getItem('comentario')
+if (local != null) {
+   const write = document.querySelector('.msg')
+   let coment = `<p>Local sto:${local}</p>`
+   write.innerHTML = coment
+}
