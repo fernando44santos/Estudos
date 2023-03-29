@@ -6,6 +6,7 @@ const password = document.getElementById('inputPassword')
 form.addEventListener('submit', e => {
     e.preventDefault()
     validacao()
+    login();
 })
 
 
@@ -46,3 +47,36 @@ const validacao = () => {
     }
 
 }
+
+// Fazendo login API
+
+
+
+async function login (){
+    let infoLogin = {
+        email : email.value,
+        password: password.value
+    }
+    
+    // Convetendo objeto infoLogin em Json
+    const infoLoginJson = JSON.stringify(infoLogin)
+    
+    // Confingurando a requisição na API
+    let SettRequest = {
+        method: 'POST',
+        body: infoLoginJson,
+        headers: {
+            'Content-type': 'application/json',
+        },
+    }
+    try{
+        const info = await fetch(`https://todo-api.ctd.academy/v1/users/login`, SettRequest);
+        let KeyJwt = await info.json();
+        console.log(KeyJwt.jwt);
+    }
+    catch(erro) {
+        console.log(erro);
+    }
+}
+
+
