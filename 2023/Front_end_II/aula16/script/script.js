@@ -21,7 +21,7 @@ async function dadoscats(){
     console.log(dados)
 
 
-        let imagens = document.querySelector('#imgs')
+        let imagens = document.querySelector('#imgs' )
     
         dados.forEach(function (cat)  {
             let div = document.createElement('div')

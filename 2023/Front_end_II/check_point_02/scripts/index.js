@@ -1,6 +1,7 @@
 const form = document.getElementById('forms')
 const email = document.getElementById('inputEmail')
 const password = document.getElementById('inputPassword')
+const erromsg = document.querySelectorAll
 
 
 form.addEventListener('submit', e => {
@@ -30,16 +31,20 @@ const validacao = () => {
     const passwordValue = password.value.trim()
 
     if (emailValue === '' || emailValue === 'null'){
+        showValidation(email, 'O campo não pode esta vazio')
         console.log('erro')
     }
     else if(!isValidEmail(emailValue)){
+        showValidation(email, 'Insira um email valido')
         console.log('erro isemail')
     }
    
     if (passwordValue === '' || passwordValue === 'null'){
+        showValidation(password, 'O campo não pode está vazio')
         console.log('senha erro')
     }
     else if(passwordValue.length < 8){
+        showValidation(password, 'A senha deve conter 8 ou mais caracteres')
         console.log('tamanho')
     }
     else{
@@ -48,9 +53,20 @@ const validacao = () => {
 
 }
 
+
+// Mostrando erros na tela
+
+const showValidation = (element, msgs) => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.msg-erro');
+
+    errorDisplay.innerText = msgs;
+    inputControl.classList.add('error');
+    inputControl.classList.remove('success')
+}
+
+
 // Fazendo login API
-
-
 
 async function login (){
     let infoLogin = {

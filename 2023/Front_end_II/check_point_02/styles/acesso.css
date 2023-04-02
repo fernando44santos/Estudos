@@ -89,3 +89,7 @@ button {
   align-items: center;
   justify-content: center;
 }
+
+.campo-form.error input{
+  border-color: red;
+}
