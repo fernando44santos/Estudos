@@ -6,8 +6,16 @@ const erromsg = document.querySelectorAll
 
 form.addEventListener('submit', e => {
     e.preventDefault()
-    validacao()
     login();
+})
+
+email.addEventListener('keyup', function(){
+    validacao()
+   
+})
+
+password.addEventListener('keyup', function(){
+    validacao()
 })
 
 
@@ -31,23 +39,27 @@ const validacao = () => {
     const passwordValue = password.value.trim()
 
     if (emailValue === '' || emailValue === 'null'){
-        showValidation(email, 'O campo não pode esta vazio')
+        showValidationError(email, 'O campo não pode esta vazio')
         console.log('erro')
     }
     else if(!isValidEmail(emailValue)){
-        showValidation(email, 'Insira um email valido')
+        showValidationError(email, 'Insira um email valido')
         console.log('erro isemail')
+    }
+    else{
+        showValidationSuccess(email)
     }
    
     if (passwordValue === '' || passwordValue === 'null'){
-        showValidation(password, 'O campo não pode está vazio')
+        showValidationError(password, 'O campo não pode está vazio')
         console.log('senha erro')
     }
     else if(passwordValue.length < 8){
-        showValidation(password, 'A senha deve conter 8 ou mais caracteres')
+        showValidationError(password, 'A senha deve conter 8 ou mais caracteres')
         console.log('tamanho')
     }
     else{
+        showValidationSuccess(password)
         console.log('tudo certo')
     }
 
@@ -56,13 +68,23 @@ const validacao = () => {
 
 // Mostrando erros na tela
 
-const showValidation = (element, msgs) => {
+const showValidationError = (element, msgs) => {
     const inputControl = element.parentElement;
     const errorDisplay = inputControl.querySelector('.msg-erro');
 
     errorDisplay.innerText = msgs;
     inputControl.classList.add('error');
     inputControl.classList.remove('success')
+}
+
+
+const showValidationSuccess = element => {
+    const inputControl = element.parentElement;
+    const errorDisplay = inputControl.querySelector('.msg-erro');
+
+    errorDisplay.innerText = '';
+    inputControl.classList.add('success');
+    inputControl.classList.remove('error')
 }
 
 
