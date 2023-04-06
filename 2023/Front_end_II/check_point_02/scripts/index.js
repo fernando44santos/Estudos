@@ -1,7 +1,7 @@
 const form = document.getElementById('forms')
 const email = document.getElementById('inputEmail')
 const password = document.getElementById('inputPassword')
-const erromsg = document.querySelectorAll
+const acessar = document.getElementById('login')
 
 
 form.addEventListener('submit', e => {
@@ -87,34 +87,109 @@ const showValidationSuccess = element => {
     inputControl.classList.remove('error')
 }
 
+// Variaveis que receberão email e senha no padrão
+let correcaoLoginE
+let correcaoLoginP
+
+// Faz o botão acessar iniciar desabilitado
+acessar.setAttribute('disabled', true)
+
+let emailValidacao = false
+let senhaValidacao = false
+let loginApiValidacao = true
+
+
+
+const infoLogin = {
+    email : "",
+    password: ""
+}
+
+acessar.addEventListener('click', async function(event){
+    if(validacaoLogin()){
+        event.preventDefault()
+// colocando dados no padrão
+correcaoLoginE = correcao(email.value)
+correcaoLoginP = correcao(password.value)
+correcaoLoginE = correcaoMinMai(correcaoLoginE)
+
+infoLogin.email = correcaoLoginE
+infoLogin.password = correcaoLoginP
+
+let infoLoginJson =JSON.stringify(infoLogin)
+
+let SettRequest = {
+    method: 'POST',
+    body: infoLoginJson,
+    headers: {
+        'Content-type': 'application/json',
+    },
+}
+try{
+const answer = await fetch(`${BaseUrlApi()}/users/login`, SettRequest)
+
+
+        if (answer.status != 201 && answer.status != 200){
+            throw answer
+        }
+        const json = await answer.json()
+        loginsucess(json.jwt)
+        
+        
+    }
+    catch(error){
+        loginErro(error.status)
+    }
+
+
+    function loginsucess(jwtRecebido){
+        sessionStorage.setItem("jwt", jwtRecebido);
+        window.location.href = "tarefas.html"
+    }
+
+    function loginErro(statusRecebido){
+        let validantion = document.getElementById('statusValidacao')
+        password.value = ""
+        if (statusRecebido == 400 || statusRecebido == 404){
+            validantion.innerText = "Verifique o e-mail e/ou senha"
+            loginApiValidacao = false
+
+        } else {
+            loginApiValidacao = true
+        }
+        validacaoLogin()
+    }
+      
+    }
+    else {
+        event.preventDefault()
+
+    }
+})
 
 // Fazendo login API
+//https://todo-api.ctd.academy/v1/users/login
 
-async function login (){
-    let infoLogin = {
-        email : email.value,
-        password: password.value
-    }
+
+// async function login (){
+//     let infoLogin = {
+//         email : email.value,
+//         password: password.value
+//     }
     
-    // Convetendo objeto infoLogin em Json
-    const infoLoginJson = JSON.stringify(infoLogin)
+//     // Convetendo objeto infoLogin em Json
+//     // const infoLoginJson = JSON.stringify(infoLogin)
     
-    // Confingurando a requisição na API
-    let SettRequest = {
-        method: 'POST',
-        body: infoLoginJson,
-        headers: {
-            'Content-type': 'application/json',
-        },
-    }
-    try{
-        const info = await fetch(`https://todo-api.ctd.academy/v1/users/login`, SettRequest);
-        let KeyJwt = await info.json();
-        console.log(KeyJwt.jwt);
-    }
-    catch(erro) {
-        console.log(erro);
-    }
-}
+//     // Confingurando a requisição na API
+
+//     .then(){
+//         const info = await fetch(`https://todo-api.ctd.academy/v1/users/login`, SettRequest);
+//         let KeyJwt = await info.json();
+//         console.log(KeyJwt.jwt);
+//     }
+//     catch(erro) {
+//         console.log(erro);
+//     }
+// }
 
 
