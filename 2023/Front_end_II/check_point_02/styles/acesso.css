@@ -93,3 +93,7 @@ button {
 .campo-form.error input{
   border-color: red;
 }
+
+.campo-form.success input{
+  border-color: rgb(255, 255, 255);
+}
