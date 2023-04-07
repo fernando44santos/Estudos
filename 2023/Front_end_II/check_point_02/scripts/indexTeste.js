@@ -54,11 +54,11 @@ password.addEventListener('keyup', function () {
         console.log('senha erro')
 
     }
-    else if (passwordValue.length < 8) {
-        showValidationError(password, 'A senha deve conter 8 ou mais caracteres')
-        senhaValidacao = false
-        console.log('tamanho')
-    }
+    // else if (passwordValue.length < 8) {
+    //     showValidationError(password, 'A senha deve conter 8 ou mais caracteres')
+    //     senhaValidacao = false
+    //     console.log('tamanho')
+    // }
     else {
         showValidationSuccess(password)
         senhaValidacao = true
@@ -67,9 +67,6 @@ password.addEventListener('keyup', function () {
     resetaValidacaoErro()
     validacaoLogin()
 })
-
-
-
 
 
 
@@ -97,9 +94,10 @@ function login() {
     }
 
     if (validacaoLogin()) {
-        fetch(`https://todo-api.ctd.academy/v1/users/login`, SettRequest)
+        fetch(`${apiBaseUrl()}/users/login`, SettRequest)
             .then((response) => {
-                /* Verifica status de sucesso na execução da promisse */
+
+                // Verifica status de sucesso
                 console.log(response);
                 console.log("eae eae eae")
                 if (response.status == 201 || response.status == 200) {
@@ -109,19 +107,18 @@ function login() {
                 throw response;
             }).then(function (resposta) {
                 console.log(resposta);
-                // Chama função ao obter sucesso no login
+                // Em caso de login bem sucedido chama a função que redireciona a pagina
                 loginsucess(resposta.jwt)
             })
             .catch(error => {
-                // Chama função ao obter algum erro no login
+                // Em caso de erro chama a função que trata o erro
                 loginErro(error.status)
                 console.log("eae eae eae erro")
             });
 
-
+// função que trata o erro no login
         function loginErro(statusRecebido) {
             let validantion = document.getElementById('statusValidation')
-            console.log("Ocorreu algum erro, verifique o e-mail e/ou senha")
             password.value = ""
             if (statusRecebido == 400 || statusRecebido == 404) {
                 validantion.innerText = "Verifique o e-mail e/ou senha"
@@ -135,12 +132,12 @@ function login() {
 
 
 
-
+// Login bem sucedido, redireciona a para proxima pagina
         function loginsucess(jwtRecebido) {
             sessionStorage.setItem("jwt", jwtRecebido);
             window.location.href = "tarefas.html"
             console.log(jwtRecebido);
-            console.log("passou aqui")
+            
         }
     }
     else {
@@ -156,10 +153,12 @@ function resetaValidacaoErro() {
     loginApiValidacao = true
 }
 
+// A depender da validade do email/senha/APIvalidação abilita ou desabilita o botão acessar
 function validacaoLogin() {
 
     if (!emailValidacao || !senhaValidacao || !loginApiValidacao) {
           acessar.setAttribute("disabled", true)
+          acessar.innerText = "Bloqueado"
         return false;
 
     } else {
