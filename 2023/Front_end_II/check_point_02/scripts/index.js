@@ -23,8 +23,8 @@ let loginApiValidacao = true
 
 
 const infoLogin = {
-    email : "",
-    password: ""
+    emailInf : correcao(email.value),
+    passwordInf: correcao(password.value),
 }
 acessar.addEventListener('click',  function(event) {
 
@@ -33,14 +33,17 @@ acessar.addEventListener('click',  function(event) {
     event.preventDefault()
 
 // colocando dados no padrão
-correcaoLoginE = correcao(email.value)
-correcaoLoginP = correcao(password.value)
-correcaoLoginE = correcaoTLwC(correcaoLoginE)
+// correcaoLoginE = correcao(email.value)
+// correcaoLoginP = correcao(password.value)
+// correcaoLoginE = correcaoTLwC(correcaoLoginE)
 
-infoLogin.email = correcaoLoginE
-infoLogin.password = correcaoLoginP
 
-let infoLoginJson =JSON.stringify(infoLogin)
+infoLogin.emailInf = correcaoLoginE
+infoLogin.passwordInf = correcaoLoginP
+
+console.log(infoLogin)
+
+let infoLoginJson = JSON.stringify(infoLogin)
 
 let SettRequest = {
     method: 'POST',
@@ -94,10 +97,11 @@ fetch(`${apiBaseUrl()}/users/login`, SettRequest)
     else {
         event.preventDefault()
         alert("Ambos campos devem ser preenchidos")
+        console.log(infoLogin)
     }
 })
     function resetaValidacaoErro (){
-        // validantion.innerText = ''
+        validantion.innerText = ''
         acessar.removeAttribute("disabled")
         acessar.innerText = "Acessar"
         loginApiValidacao = true
@@ -157,16 +161,20 @@ password.addEventListener('keyup', function(){
 
 function validacaoLogin() {
     
-    if (!emailValidacao || !senhaValidacao || !loginApiValidacao) {
-      acessar.setAttribute("disabled", true)
+    if (!emailValidacao || !senhaValidacao || loginApiValidacao) {
+    //   acessar.setAttribute("disabled", true)
       return false;
   
     } else {
       acessar.removeAttribute("disabled")
       acessar.innerText = "Acessar"
+      console.log("desabled true")
       return true;
     }
   }
+
+  console.log(`É isso :${correcaoLoginE}`)
+  console.log(info)
 
 
   // function IsEmail(email){

@@ -37,26 +37,33 @@ const validacao = () => {
 
     if (emailValue === '' || emailValue === 'null'){
         showValidationError(email, 'O campo não pode esta vazio')
+        emailValidacao = false
         console.log('erro')
     }
     else if(!isValidEmail(emailValue)){
         showValidationError(email, 'Insira um email valido')
+        emailValidacao = false
         console.log('erro isemail')
     }
     else{
         showValidationSuccess(email)
+        emailValidacao = true
     }
    
     if (passwordValue === '' || passwordValue === 'null'){
         showValidationError(password, 'O campo não pode está vazio')
+        senhaValidacao = false
         console.log('senha erro')
     }
     else if(passwordValue.length < 8){
         showValidationError(password, 'A senha deve conter 8 ou mais caracteres')
         console.log('tamanho')
+        senhaValidacao = false
+
     }
     else{
         showValidationSuccess(password)
+        senhaValidacao = true
         console.log('tudo certo')
     }
 
@@ -128,12 +135,15 @@ const answer = await fetch(`${BaseUrlApi()}/users/login`, SettRequest)
 
         if (answer.status != 201 && answer.status != 200){
             throw answer
+
             
         }
+        else{
         const json = await answer.json()
+        loginApiValidacao = true
         loginsucess(json.jwt)
         console.log(answer)
-        
+        }
     }
     catch(error){
         loginErro(error.status)
