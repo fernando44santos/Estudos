@@ -107,8 +107,7 @@ function tasks(tasksList) {
         }
         else {
             //Tarefas Completas
-            NTaksf.classList.add("tarefa");
-            NTaksf.id = `id-${tarefa.id}`
+          
             let NTaksf = `
                     <div class="descricao">
                     <p class="nome">${tarefa.description}</p>
@@ -119,10 +118,12 @@ function tasks(tasksList) {
                 </div>
             `;
             let newtaskf = document.createElement('li')
-            newtaskf.innerHTML = NTaksf
             newtaskf.classList.add("tarefa")
+            // NTaksf.id = `id-${tarefa.id}`
+            newtaskf.innerHTML = NTaksf
+           
 
-            tarefasTerminadas.appendChild(newtaskf)
+            tCompleted.appendChild(newtaskf)
             console.log("funcionando inco")
         }
     }
