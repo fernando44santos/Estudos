@@ -117,13 +117,12 @@ function addNewTask(tarefa) {
         <p class="timestamp">${tarefa.createdAt}</p>
     </div>
 `;
-    let newtask = document.createElement('li');
+    let newtask = document.createElement('li')
     newtask.id = `id-${tarefa.id}`
     newtask.innerHTML = NTaks
-    newtask.classList.add("tarefa");
-    notcompleted.appendChild(newtask);
-    console.log("funcionando inco")
-    console.log(tarefa.description);
+    newtask.classList.add("tarefa")
+    notcompleted.appendChild(newtask)
+
 }
 
 
@@ -167,7 +166,7 @@ function tasks(tasksList) {
                 </div>
             `;
             let newtask = document.createElement('li');
-            newtask.id = `id-${tarefa.id}`
+            newtask.setAttribute('id', `id-${tarefa.id}`)
             newtask.innerHTML = NTaks
             newtask.classList.add("tarefa");
             notcompleted.appendChild(newtask);
@@ -183,13 +182,13 @@ function tasks(tasksList) {
                     
                     <div class="opcoes-tarefas-completas">
                         <button"><i id="tarefa_${tarefa.id}" class="fas fa-undo-alt change" onclick="tasksAPIfinishedFalse(${tarefa.id})" title="Voltar para tarefa pendente"></i></button>
-                        <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt"></i></button>
+                        <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt" onclick="signOut(${tarefa.id})"></i></button>
                     </div>
                 </div>
             `;
             let newtaskf = document.createElement('li')
-            newtaskf.classList.add("tarefa")
             newtaskf.id = `id-${tarefa.id}`
+            newtaskf.classList.add("tarefa")
             newtaskf.innerHTML = NTaksf
             tCompleted.appendChild(newtaskf)
             console.log("funcionando inco")
@@ -203,7 +202,7 @@ function tasks(tasksList) {
 
 async function tasksAPIfinished(taskId) {
 
-    
+
 
     let completed = {
         completed: true
@@ -217,13 +216,13 @@ async function tasksAPIfinished(taskId) {
             'authorization': jwt
         },
     }
-    
-        let resposta = await fetch(`${apiBaseUrl()}/tasks/${taskId}`, SettRequest)
-        let dados = await resposta.json();
-        finished(dados)
-    
 
-  
+    let resposta = await fetch(`${apiBaseUrl()}/tasks/${taskId}`, SettRequest)
+    let dados = await resposta.json();
+    finished(dados)
+
+
+
 
 }
 
@@ -236,14 +235,15 @@ function finished(tarefa) {
             <div class="descricao">
                 <p class="nome">${tarefa.description}</p>
                 <div class="opcoes-tarefas-completas">
-                    <button><i id="tarefa_${tarefa.id}" class="fas fa-undo-alt change" title="Voltar para tarefa pendente"></i></button>
-                    <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt"></i></button>
+                    <button><i id="tarefa_${tarefa.id}" class="fas fa-undo-alt change" title="Voltar para tarefa pendente" onclick="tasksAPIfinishedFalse(${tarefa.id})"></i></button>
+                    <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt" onclick="signOut(${tarefa.id})"> </i></button>
                 </div>
             </div>
         `;
-    let completedTask = document.createElement('li');
+    let completedTask = document.createElement('li')
+    completedTask.setAttribute('id', `id-${tarefa.id}`)
     completedTask.innerHTML = newcompleted
-    completedTask.classList.add('tarefa');
+    completedTask.classList.add('tarefa')
     tCompleted.appendChild(completedTask)
 }
 
@@ -255,7 +255,7 @@ function finished(tarefa) {
 // Retornando o status para não completa
 async function tasksAPIfinishedFalse(taskId) {
 
-   
+
 
     let completed = {
         completed: false
@@ -269,11 +269,11 @@ async function tasksAPIfinishedFalse(taskId) {
             'authorization': jwt
         },
     }
-    
-        let dado = await fetch(`${apiBaseUrl()}/tasks/${taskId}`, SettRequest)
-        let dados = await dado.json();
-        
-        finishedfalse(dados)
+
+    let dador = await fetch(`${apiBaseUrl()}/tasks/${taskId}`, SettRequest)
+    let dados = await dador.json();
+
+    finishedfalse(dados)
 
 
 }
@@ -296,11 +296,26 @@ function finishedfalse(tarefa) {
     notcompleted.appendChild(newtask);
     console.log("funcionando inco")
 }
-// Retornando o status para não completa
+// ----------------------------------------------------------
 
 
+// DELETANDO TASK
+async function signOut(taskId) {
 
+    let SettRequest = {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json',
+            'authorization': jwt
+        },
+    }
 
+    await fetch(`${apiBaseUrl()}/tasks/${taskId}`, SettRequest)
 
+    let taskf = document.getElementById(`id-${taskId}`);
+        taskf.remove();
+        
+        
+}
 
-
+// -------------------------------------------------------------
