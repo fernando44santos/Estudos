@@ -4,6 +4,7 @@ let notcompleted = document.querySelector(".tarefas-pendentes")
 let tCompleted = document.querySelector(".tarefas-terminadas")
 let buttonCreateTask = document.getElementById('create')
 let pendingTask = document.getElementById('pTask')
+let SignOut = document.getElementById('closeApp')
 
 
 let jwt;
@@ -182,7 +183,7 @@ function tasks(tasksList) {
                     
                     <div class="opcoes-tarefas-completas">
                         <button"><i id="tarefa_${tarefa.id}" class="fas fa-undo-alt change" onclick="tasksAPIfinishedFalse(${tarefa.id})" title="Voltar para tarefa pendente"></i></button>
-                        <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt" onclick="signOut(${tarefa.id})"></i></button>
+                        <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt" onclick="del(${tarefa.id})"></i></button>
                     </div>
                 </div>
             `;
@@ -236,7 +237,7 @@ function finished(tarefa) {
                 <p class="nome">${tarefa.description}</p>
                 <div class="opcoes-tarefas-completas">
                     <button><i id="tarefa_${tarefa.id}" class="fas fa-undo-alt change" title="Voltar para tarefa pendente" onclick="tasksAPIfinishedFalse(${tarefa.id})"></i></button>
-                    <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt" onclick="signOut(${tarefa.id})"> </i></button>
+                    <button><i id="tarefa_${tarefa.id}" class="far fa-trash-alt" onclick="del(${tarefa.id})"> </i></button>
                 </div>
             </div>
         `;
@@ -300,7 +301,7 @@ function finishedfalse(tarefa) {
 
 
 // DELETANDO TASK
-async function signOut(taskId) {
+async function del(taskId) {
 
     let SettRequest = {
         method: 'DELETE',
@@ -319,3 +320,14 @@ async function signOut(taskId) {
 }
 
 // -------------------------------------------------------------
+
+
+// deslogando
+
+SignOut.addEventListener('click', async function signOut(taskId) {
+
+    sessionStorage.clear()
+    window.location = 'index.html'
+
+})
+// --------------------------------------------------------------
