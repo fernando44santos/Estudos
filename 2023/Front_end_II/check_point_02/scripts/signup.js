@@ -8,15 +8,19 @@ const password02 = document.getElementById('inputPassword02')
 form.addEventListener('submit', e => {
     e.preventDefault()
     validacao()
-    // CreatLogin()
+    CreatLogin()
+    console.log('chamando???????')
 })
 
+// colocando no padrão
 
 
-const isValidEmail = email => {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-};
+
+
+// const isValidEmail = email => {
+//     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+//     return re.test(String(email).toLowerCase());
+// };
 
 // const isValidPassword = password => {
 //     const res = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -32,40 +36,40 @@ const validacao = () => {
     const password02Value = password02.value.trim()
 
     if (nameValue === '' || nameValue === 'null') {
-        showValidation(firstname, 'O campo não pode ficar vazio')
+        showValidationError(firstname, 'O campo não pode ficar vazio')
         console.log('nome em branco')
     }
 
     if (lastNvalue === '' || lastNvalue === 'null') {
-        showValidation(lastName, 'O campo não pode ficar vazio')
+        showValidationError(lastName, 'O campo não pode ficar vazio')
         console.log('sobrenome em branco')
     }
 
 
     if (emailValue === '' || emailValue === 'null') {
-        showValidation(email, 'O campo não pode ficar vazio')
+        showValidationError(email, 'O campo não pode ficar vazio')
         console.log('email em branco')
     }
     else if (!isValidEmail(emailValue)) {
-        showValidation(email, 'Insira um endereço de email valido')
+        showValidationError(email, 'Insira um endereço de email valido')
         console.log('erro email invalido')
     }
 
     if (passwordValue === '' || passwordValue === 'null') {
-        showValidation(password, 'O campo não pode ficar vazio')
+        showValidationError(password, 'O campo não pode ficar vazio')
         console.log('senha vazio')
     }
-    else if (!isValidPassword(passwordValue)) {
-        showValidation(password, 'A senha deve conter 8 ou mais caracteres')
-        console.log('senha invalida')
-    }
+    // else if (!isValidPassword(passwordValue)) {
+    //     showValidation(password, 'A senha deve conter 8 ou mais caracteres')
+    //     console.log('senha invalida')
+    // }
     else if (password02Value === '' || password02Value === 'null') {
-        showValidation(password02, 'O campo não pode ficar vazio')
+        showValidationError(password02, 'O campo não pode ficar vazio')
         console.log('senha02 vazio')
     }
 
-    else if (password02Value === passwordValue) {
-        showValidation(password02, 'As senhas não coincidem')
+    else if (password02Value !== passwordValue) {
+        showValidationError(password02, 'As senhas não coincidem')
         console.log('As senhas não coincidem')
     }
 
@@ -73,14 +77,14 @@ const validacao = () => {
 }
 
 // Mostrando erros na tela
-const showValidation = (element, msgs) => {
-    const inputControl = element.parentElement;
-    const errorDisplay = inputControl.querySelector('.msg-erro');
+// const showValidation = (element, msgs) => {
+//     const inputControl = element.parentElement;
+//     const errorDisplay = inputControl.querySelector('.msg-erro');
 
-    errorDisplay.innerText = msgs;
-    inputControl.classList.add('error');
-    inputControl.classList.remove('success')
-}
+//     errorDisplay.innerText = msgs;
+//     inputControl.classList.add('error');
+//     inputControl.classList.remove('success')
+// }
 
 
 // Criando usuario
@@ -89,13 +93,22 @@ const showValidation = (element, msgs) => {
 
 async function CreatLogin() {
 
+
+
+    let nameValueCorrection = correcao (firstname.value)
+    let lastNameValueCorrection = correcao (lastName.value)
+    let emailValueCorrection = correcao (email.value)
+    emailValueCorrection = correcaoTLwC(emailValueCorrection)
+    let passwordCorrection = correcao (password.value)
+
+
     let CreateLogin = {
-        firstName: "Lunahh",
-        lastName: "Luna",
-        email: "luna7s887@gmail.com",
-        password: "Ffernando#8"
+        firstName:nameValueCorrection,
+        lastName: lastNameValueCorrection,
+        email:emailValueCorrection,
+        password:passwordCorrection
     }
-    
+    console.log(CreateLogin)
     // Convetendo objeto CreateLogin em Json
     const infoLoginJson = JSON.stringify(CreateLogin)
     
