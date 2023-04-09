@@ -1,11 +1,12 @@
 const form = document.getElementById('forms')
+const signUp = document.getElementById('sign-up')
 const firstname = document.getElementById('inputName')
 const lastName = document.getElementById('inputLastName')
 const email = document.getElementById('inputEmail')
 const password = document.getElementById('inputPassword')
 const password02 = document.getElementById('inputPassword02')
 
-form.addEventListener('submit', e => {
+signUp.addEventListener('submit', e => {
     e.preventDefault()
     CreatLogin()
   
@@ -16,7 +17,7 @@ form.addEventListener('submit', e => {
 // Validações
 
 firstname.addEventListener('keyup', function () {
-    const nameValue = firstname.value.trim()
+    let nameValue = firstname.value.trim()
 
     if (nameValue === '' || nameValue === 'null') {
         showValidationError(firstname, 'O campo não pode ficar vazio')
@@ -28,7 +29,7 @@ firstname.addEventListener('keyup', function () {
 })
 
 lastName.addEventListener('keyup', function () {
-    const lastNvalue = lastName.value.trim()
+    let lastNvalue = lastName.value.trim()
 
     if (lastNvalue === '' || lastNvalue === 'null') {
         showValidationError(lastName, 'O campo não pode ficar vazio')
@@ -43,7 +44,7 @@ lastName.addEventListener('keyup', function () {
 
 
 email.addEventListener('keyup', function () {
-    const emailValue = email.value.trim()
+    let emailValue = email.value.trim()
 
     if (emailValue === '' || emailValue === 'null') {
         showValidationError(email, 'O campo não pode ficar vazio')
@@ -61,14 +62,14 @@ email.addEventListener('keyup', function () {
 })
 
 password.addEventListener('keyup', function () {
-    const passwordValue = password.value.trim()
+    let passwordValue = password.value.trim()
 
     if (passwordValue === '' || passwordValue === 'null') {
         showValidationError(password, 'O campo não pode ficar vazio')
         console.log('senha vazio')
     }
     else if (!isValidPassword(passwordValue)) {
-        showValidationError(password, 'Senha fraca')
+        showValidationError(password, 'Senha fraca, a senha deve conter: Aa1@')
         console.log('senha invalida')
     }
     else{
@@ -79,7 +80,8 @@ password.addEventListener('keyup', function () {
 })
 
 password02.addEventListener('keyup', function(){
-    const password02Value = password02.value.trim()
+    let password02Value = password02.value.trim()
+    let passwordValue = password.value.trim()
 
     if (password02Value === '' || password02Value === 'null') {
         showValidationError(password02, 'O campo não pode ficar vazio')
