@@ -171,7 +171,7 @@ function tasks(tasksList) {
             newtask.innerHTML = NTaks
             newtask.classList.add("tarefa");
             notcompleted.appendChild(newtask);
-            console.log("funcionando inco")
+            // console.log("funcionando inco")
         }
         else {
             //Tarefas Completas
@@ -192,7 +192,7 @@ function tasks(tasksList) {
             newtaskf.classList.add("tarefa")
             newtaskf.innerHTML = NTaksf
             tCompleted.appendChild(newtaskf)
-            console.log("funcionando inco")
+            
         }
     }
 }

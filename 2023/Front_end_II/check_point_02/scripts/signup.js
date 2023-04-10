@@ -6,12 +6,22 @@ const email = document.getElementById('inputEmail')
 const password = document.getElementById('inputPassword')
 const password02 = document.getElementById('inputPassword02')
 
-signUp.addEventListener('submit', e => {
+form.addEventListener('submit', e => {
     e.preventDefault()
     CreatLogin()
-  
+
+
 })
 
+signUp.setAttribute("disabled", true)
+signUp.innerText = "Bloqueado"
+
+let emailValidacao = false
+let senhaValidacao = false
+let nameValidation = false
+let lastNameValidation = false
+let senha02Validation = false
+let loginApiValidacao = true
 
 
 // Validações
@@ -22,10 +32,13 @@ firstname.addEventListener('keyup', function () {
     if (nameValue === '' || nameValue === 'null') {
         showValidationError(firstname, 'O campo não pode ficar vazio')
         console.log('nome em branco')
+        nameValidation = false
     }
     else {
         showValidationSuccess(firstname)
+        nameValidation = true
     }
+    validacaoLogin()
 })
 
 lastName.addEventListener('keyup', function () {
@@ -33,13 +46,15 @@ lastName.addEventListener('keyup', function () {
 
     if (lastNvalue === '' || lastNvalue === 'null') {
         showValidationError(lastName, 'O campo não pode ficar vazio')
+        lastNameValidation = false
         console.log('sobrenome em branco')
     }
-    else{
+    else {
         showValidationSuccess(lastName)
+        lastNameValidation = true
     }
 
-
+    validacaoLogin()
 })
 
 
@@ -49,16 +64,19 @@ email.addEventListener('keyup', function () {
     if (emailValue === '' || emailValue === 'null') {
         showValidationError(email, 'O campo não pode ficar vazio')
         console.log('email em branco')
+        emailValidacao = false
     }
     else if (!isValidEmail(emailValue)) {
         showValidationError(email, 'Insira um endereço de email valido')
         console.log('erro email invalido')
+        emailValidacao = false
     }
     else {
         showValidationSuccess(email)
+        emailValidacao = true
 
     }
-
+    validacaoLogin()
 })
 
 password.addEventListener('keyup', function () {
@@ -67,35 +85,41 @@ password.addEventListener('keyup', function () {
     if (passwordValue === '' || passwordValue === 'null') {
         showValidationError(password, 'O campo não pode ficar vazio')
         console.log('senha vazio')
+        senhaValidacao = false
     }
     else if (!isValidPassword(passwordValue)) {
         showValidationError(password, 'Senha fraca, a senha deve conter: Aa1@')
         console.log('senha invalida')
+        senhaValidacao = false
     }
-    else{
+    else {
         showValidationSuccess(password)
+        senhaValidacao = true
 
     }
-
+    validacaoLogin()
 })
 
-password02.addEventListener('keyup', function(){
+password02.addEventListener('keyup', function () {
     let password02Value = password02.value.trim()
     let passwordValue = password.value.trim()
 
     if (password02Value === '' || password02Value === 'null') {
         showValidationError(password02, 'O campo não pode ficar vazio')
         console.log('senha02 vazio')
-    }
-    
-    else if (password02Value !== passwordValue) {
-        showValidationError(password02, 'As senhas não coincidem')
-        console.log('As senhas não coincidem')
-    }
-    else{
-        showValidationSuccess(password02)
+        senha02Validation = false
     }
 
+    else if (password02Value !== passwordValue) {
+        showValidationError(password02, 'As senhas não coincidem')
+        senha02Validation = false
+        console.log('As senhas não coincidem')
+    }
+    else {
+        showValidationSuccess(password02)
+        senha02Validation = true
+    }
+    validacaoLogin()
 })
 //----------------------------------------------------------------------------------
 
@@ -133,12 +157,47 @@ async function CreatLogin() {
     }
 
     try {
-        const info = await fetch(`https://todo-api.ctd.academy/v1/users`, SettRequest);
+        const info = await fetch(`${apiBaseUrl()}/users`, SettRequest);
         let KeyJwt = await info.json();
         console.log(KeyJwt.jwt);
+        alert(KeyJwt.jwt)
+        // clear(KeyJwt.jwt)
+
     }
     catch (erro) {
-        console.log(erro);
+        alert(`Não foi possivel criar a conta: ${erro}`);
     }
 }
 
+
+
+function validacaoLogin() {
+    
+    if (!emailValidacao || !senhaValidacao || !loginApiValidacao || !nameValidation || !lastNameValidation || !senha02Validation ) {
+      signUp.setAttribute("disabled", true)
+      signUp.innerText = "Bloqueado"
+      return false;
+  
+    } else {
+      signUp.removeAttribute("disabled")
+      signUp.innerText = "Criar conta"
+      console.log("desabled true")
+      return true;
+    }
+  }
+
+// function clear(rec) {
+
+//     if(rec != ""){
+//     firstname = ""
+//     lastName = ""
+//     email = ""
+//     password = ""
+//     password02 = ""
+// }
+// else{
+
+    
+// }
+
+// }

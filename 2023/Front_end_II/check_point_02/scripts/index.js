@@ -21,7 +21,7 @@ let emailValidacao = false
 let senhaValidacao = false
 let loginApiValidacao = true
 
-
+let emailc = correcaoTLwC(email.value)
 const infoLogin = {
     emailInf : correcao(email.value),
     passwordInf: correcao(password.value),
@@ -161,8 +161,8 @@ password.addEventListener('keyup', function(){
 
 function validacaoLogin() {
     
-    if (!emailValidacao || !senhaValidacao || loginApiValidacao) {
-    //   acessar.setAttribute("disabled", true)
+    if (!emailValidacao || !senhaValidacao || !loginApiValidacao) {
+      acessar.setAttribute("disabled", true)
       return false;
   
     } else {
