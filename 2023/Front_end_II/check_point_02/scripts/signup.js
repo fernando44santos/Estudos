@@ -159,13 +159,21 @@ async function CreatLogin() {
     try {
         const info = await fetch(`${apiBaseUrl()}/users`, SettRequest);
         let KeyJwt = await info.json();
-        console.log(KeyJwt.jwt);
-        alert(KeyJwt.jwt)
+        // console.log(info);
+        // alert(KeyJwt.jwt)
         // clear(KeyJwt.jwt)
+        if(info.status == 400){
+            alert("Usuario já se encontra registrado")
+        }
+        else{
+            alert("conta criada")
+        }
 
     }
     catch (erro) {
-        alert(`Não foi possivel criar a conta: ${erro}`);
+        // alert(`Não foi possivel criar a conta: ${erro}`);
+        // console.log("batata")
+        alert('erro no servidor')
     }
 }
 

@@ -75,9 +75,11 @@ password.addEventListener('keyup', function () {
 
 function login() {
 
+    let emailc = correcao(email.value)
+    
     let infoLogin = {
-        email: email.value,
-        password: password.value
+        email: correcaoTLwC(emailc),
+        password: correcao(password.value)
     }
 
  

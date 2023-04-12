@@ -6,7 +6,7 @@ function correcao (rec){
 
 // Deixa todas as letras minusculas
 function correcaoTLwC(rec){
-    return rec.trim()
+    return rec.toLowerCase()
 }
 // Valida o email no formato padrão
 const isValidEmail = email => {
@@ -26,11 +26,7 @@ function apiBaseUrl(){
 
 
 //   mostrando os erros na tela
-  function SmallErro(elementoRecebido) {
-    elementoRecebido.style.color = "#E42323BF";
-    elementoRecebido.style.fontSize = "8";
-    elementoRecebido.style.fontWeight = "bold";
-  }
+
 
   const showValidationError = (element, msgs) => {
     const inputControl = element.parentElement;

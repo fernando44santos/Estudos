@@ -21,11 +21,15 @@ let emailValidacao = false
 let senhaValidacao = false
 let loginApiValidacao = true
 
-let emailc = correcaoTLwC(email.value)
+let emailc = correcao(email.value)
+
 const infoLogin = {
-    emailInf : correcao(email.value),
+    emailInf : correcaoTLwC(emailc),
     passwordInf: correcao(password.value),
 }
+
+
+console.log(infoLogin.emailInf)
 acessar.addEventListener('click',  function(event) {
 
     if(validacaoLogin()){
@@ -38,10 +42,9 @@ acessar.addEventListener('click',  function(event) {
 // correcaoLoginE = correcaoTLwC(correcaoLoginE)
 
 
-infoLogin.emailInf = correcaoLoginE
-infoLogin.passwordInf = correcaoLoginP
 
-console.log(infoLogin)
+
+
 
 let infoLoginJson = JSON.stringify(infoLogin)
 
@@ -54,7 +57,7 @@ let SettRequest = {
 }
 fetch(`${apiBaseUrl()}/users/login`, SettRequest)
       .then((response) => {
-        /* Verifica status de sucesso na execução da promisse */
+        //  Verifica status de sucesso 
         console.log(response);
         console.log("eae eae eae")
         if (response.status == 201 || response.status == 200) {
@@ -109,7 +112,7 @@ fetch(`${apiBaseUrl()}/users/login`, SettRequest)
 
 
 email.addEventListener('keyup', function(){
-    // email.style.border = 'red'
+   
 
 
     const emailValue = email.value.trim()
@@ -173,8 +176,12 @@ function validacaoLogin() {
     }
   }
 
-  console.log(`É isso :${correcaoLoginE}`)
-  console.log(info)
+
+
+
+
+//   console.log(`É isso :${correcaoLoginE}`)
+//   console.log(info)
 
 
   // function IsEmail(email){
